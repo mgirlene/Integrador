@@ -104,7 +104,7 @@ label {
 button {
 	outline: none !important;
 	border: none;
-	background: transparent;
+  background: transparent;
 }
 
 button:hover {
