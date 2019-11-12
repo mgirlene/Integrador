@@ -2,8 +2,6 @@
 <html lang="pt-br">
 
 <head>
-
-    <title>Cadastro</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,6 +28,10 @@
 </head>
 
 <body>
+    <?php
+    include "menu.php";
+    ?>
+        
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-t-50 p-b-90">
@@ -65,9 +67,13 @@
             </div>
         </div>
     </div>
-
-
     <div id="dropDownSelect1"></div>
+    
+    <?php
+    include "rodape.php";
+    ?>
+
+
 
 
     <!--===============================================================================================-->

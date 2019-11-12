@@ -156,7 +156,7 @@ iframe {
 
 .wrap-login100 {
   width: 300px;
-  background: #fff;
+  background: rgb(150, 52, 52);
   border-radius: 10px;
   position: relative;
 }
@@ -318,6 +318,7 @@ iframe {
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
+  background-color: #666666;
 }
 
 .login100-form-btn {
