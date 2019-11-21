@@ -1,3 +1,11 @@
+<?php
+require_once("conexao.php");
+$sql = "SELECT * FROM disciplina";
+$query = $conexao->prepare($sql);
+$resultado = $query->execute();
+
+$disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -56,13 +64,13 @@
                                 <li><a href="index.php">Início</a></li>
                                 <li><a href="#">Disciplinas</a>
                                     <ul class="dropdown">
-                                        <li><a href="">Português</a></li>
-                                        <li><a href="">Informática</a></li>
-                                        <li><a href="">Matemática</a></li>
-                                        <li><a href="">Geografia</a></li>
-                                        <li><a href="">Quimica</a></li>
-                                        <li><a href="">História</a></li>
-                                        <li><a href="">Inglês</a></li>
+                                        <?php
+                                            foreach ($disciplina as $disc) {
+                                            echo "<li>
+                                            <a href=''>$disc[nome_disciplina]</a>
+                                            </li>";
+                                        }
+                                        ?>
                                     </ul>
                                 </li>
                                 <li><a href="Agendamento.php">Agendar Atendimento</a></li>

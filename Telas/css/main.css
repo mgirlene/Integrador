@@ -24,9 +24,14 @@
 	box-sizing: border-box;
 }
 
-body, html {
+/*body, html {
 	height: 100%;
 	font-family: Ubuntu-Regular, sans-serif;
+}*/
+body,html {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 /*---------------------------------------------*/
@@ -146,7 +151,7 @@ iframe {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  padding: 0px;
   
   background-position: center;
   background-size: cover;
@@ -156,7 +161,7 @@ iframe {
 
 .wrap-login100 {
   width: 300px;
-  background: rgb(150, 52, 52);
+  background: whitesmoke;
   border-radius: 10px;
   position: relative;
 }

@@ -1,3 +1,12 @@
+<?php
+    require_once("conexao.php");
+    $sql = "SELECT * FROM curso";
+    $query = $conexao->prepare($sql);
+    $resultado = $query->execute();
+
+    $cursos = $query->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,8 +19,6 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
@@ -20,7 +27,9 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -31,18 +40,17 @@
     <?php
     include "menu.php";
     ?>
-        
+
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-t-50 p-b-90">
-                <form class="login100-form validate-form flex-sb flex-w">
+                <form class="login100-form validate-form flex-sb flex-w" method="POST" action="processar_cadastro.php">
                     <span class="login100-form-title p-b-51">
                         Cadastre-se
                     </span>
 
-
                     <div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-                        <input class="input100" type="text" name="name" placeholder="Nome">
+                        <input class="input100" type="text" name="nome" placeholder="Nome">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -51,9 +59,29 @@
                         <input class="input100" type="text" name="matricula" placeholder="Matrícula">
                         <span class="focus-input100"></span>
                     </div>
+                
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
+                        <select class="input100" name="curso">
+                            <option>
+                                Curso:
+                            </option>
+                            <?php
+                                foreach ($cursos as $curso) {
+                                    echo "<option value ='$curso[id_curso]'>
+                                    $curso[nome_curso]
+                                    </option>";
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
+                        <input class="input100" type="password" name="senha" placeholder="Senha">
+                        <span class="focus-input100"></span>
+                    </div>
 
                     <div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-                        <input class="input100" type="txt" name="disciplina" placeholder="Disciplina">
+                        <input class="input100" type="password" name="confSenha" placeholder="Confirmar senha">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -68,7 +96,7 @@
         </div>
     </div>
     <div id="dropDownSelect1"></div>
-    
+
     <?php
     include "rodape.php";
     ?>
@@ -90,6 +118,7 @@
     <script src="vendor/daterangepicker/daterangepicker.js"></script>
     <!--===============================================================================================-->
     <script src="vendor/countdowntime/countdowntime.js"></script>
+    <script src="js/main.js"></script>
     <!--===============================================================================================-->
 </body>
 

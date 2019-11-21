@@ -29,6 +29,9 @@
 </head>
 
 <body>
+	<?php
+	include "menu.php";
+	?>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
@@ -39,7 +42,7 @@
 
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-						<input class="input100" type="number" name="username" placeholder="Matrícula">
+						<input class="input100" type="text" name="username" placeholder="Matrícula">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -74,7 +77,9 @@
 			</div>
 		</div>
 	</div>
-
+	<?php
+	include "rodape.php";
+	?>
 
 	<div id="dropDownSelect1"></div>
 
@@ -92,6 +97,7 @@
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>
 	<!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="js/main.js"></script>
 	<!--===============================================================================================-->
 
 

@@ -1,14 +1,12 @@
-create database monitoria_IFRN;
-use monitoria_IFRN;
+create database monitoria_integrador;
+use monitoria_integrador;
 
 create table usuario(
 	id_usuario integer primary key auto_increment,
     tipo_usuario varchar(45),
-    matrícula varchar(45),
-    nome_usuario varchar(45),
-    cpf_usuario varchar(45),
-    login_usuario varchar(45),
-    senha_usuario varchar(45)
+    matricula varchar(45),
+    nome varchar(45),
+    senha varchar(45)
 );
 
 create table curso(
@@ -39,14 +37,6 @@ create table monitor(
     foreign key (id_disciplina) references disciplina(id_disciplina),
     foreign key (id_curso) references curso(id_curso)
     );
-    
-create table telefone(
-	id_telefone integer primary key auto_increment,
-    numero varchar(45),
-    nome varchar(45),
-    id_usuario integer,
-    foreign key (id_usuario) references usuario(id_usuario)
-);
 
 create table atendimento(
 	id_atendimento integer primary key auto_increment,

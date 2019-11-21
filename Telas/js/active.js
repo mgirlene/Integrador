@@ -86,7 +86,6 @@
     if (browserWindow.width() > 767) {
         new WOW().init();
     }
-
     // :: 10.0 prevent default a click
     $('a[href="#"]').click(function ($) {
         $.preventDefault()

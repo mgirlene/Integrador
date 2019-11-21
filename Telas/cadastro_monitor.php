@@ -11,7 +11,7 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <head>
 
-	<title>Agendamento</title>
+	<title>Cadastro Monitor</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,20 +41,30 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
 	<?php
 	include "menu.php";
 	?>
-
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
 				<form class="login100-form validate-form flex-sb flex-w">
-					<fieldset>
-						<span class="login100-form-title p-b-51">
-							Agendar Atendimento
-						</span>
+					<span class="login100-form-title p-b-51">
+						Cadastrar Monitor
+					</span>
 
-						<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
+						<input class="input100" type="text" name="name" placeholder="Nome">
+						<span class="focus-input100"></span>
+					</div>
+
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
+						<input class="input100" type="text" name="matricula" placeholder="Matrícula">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
 							<select class="input100">
 								<option>
-									Selecione:
+									Disciplina:
 								</option>
 								<?php
 								foreach ($disciplina as $disc) {
@@ -66,30 +76,14 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
 							</select>
 						</div>
 
-						<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-							<input class="input100" type="date" name="data" placeholder="Data">
-							<span class="focus-input100"></span>
-						</div>
+					<div class="container-login100-form-btn m-t-17">
+						<button class="login100-form-btn">
+							Cadastrar
+						</button>
+					</div>
 
-						<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-							<input class="input100" type="time" name="time" placeholder="Horário">
-							<span class="focus-input100"></span>
-						</div>
-
-						<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-							<input class="input100" type="text" name="motivo" placeholder="Qual sua dúvida?">
-							<span class="focus-input100"></span>
-						</div>
-
-						<div class="container-login100-form-btn m-t-17">
-							<button class="login100-form-btn">
-								Agendar
-							</button>
-						</div>
-					</fieldset>
 				</form>
 			</div>
-
 		</div>
 	</div>
 	<?php
