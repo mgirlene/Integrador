@@ -44,7 +44,7 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-t-50 p-b-90">
-                <form class="login100-form validate-form flex-sb flex-w" method="POST" action="processar_cadastro.php">
+                <form class="login100-form validate-form flex-sb flex-w" method="POST" action="processar_cadastro.php" id = "formC">
                     <span class="login100-form-title p-b-51">
                         Cadastre-se
                     </span>
@@ -62,7 +62,7 @@
                 
                     <div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
                         <select class="input100" name="curso">
-                            <option>
+                            <option value="">
                                 Curso:
                             </option>
                             <?php
@@ -76,12 +76,12 @@
                     </div>
                     
                     <div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-                        <input class="input100" type="password" name="senha" placeholder="Senha">
+                        <input class="input100" type="password" name="senha" id="senha" placeholder="Senha">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-                        <input class="input100" type="password" name="confSenha" placeholder="Confirmar senha">
+                        <input class="input100" type="password" name="confSenha" id="confSenha" placeholder="Confirmar senha">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -90,12 +90,12 @@
                             Cadastrar
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
     <div id="dropDownSelect1"></div>
+    <p id = "msg" name = "mensagem"></p>
 
     <?php
     include "rodape.php";
@@ -119,6 +119,7 @@
     <!--===============================================================================================-->
     <script src="vendor/countdowntime/countdowntime.js"></script>
     <script src="js/main.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
     <!--===============================================================================================-->
 </body>
 

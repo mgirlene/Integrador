@@ -15,23 +15,30 @@
         public $tipo_user;
     }
        try{
+        $existe = "SELECT id_usuario FROM usuario WHERE matricula = :m";
+        $verifica = $conexao->prepare($existe);
+        $verifica->bindValue(':m', $matricula);
+        $verifica->execute();
 
-        $sql = "INSERT INTO usuario (tipo_usuario,matricula,nome,senha) VALUES (:tipo_usuario,:matricula,:nome,:senha)";
-        $query = $conexao->prepare($sql);
-        
-        $query->bindValue(':tipo_usuario', $tipo_user);
-        $query->bindValue(':matricula', $matricula );
-        $query->bindValue(':nome', $nome );
-        $query->bindValue(':senha', $senha);
-        echo " $tipo_user";
-        echo " $matricula";
-        echo " $nome";
-        echo " $senha";
-        $resultado = $query->execute();
-        $ultimo_id = $conexao->lastInsertId();
+        if($verifica->rowCount() > 0){
+            return false;
+        }
 
-        echo " ultimo id inserido: + $ultimo_id ";
+        else{
+            $sql = "INSERT INTO usuario (tipo_usuario,matricula,nome,senha) VALUES (:tipo_usuario,:matricula,:nome,:senha)";
+            $query = $conexao->prepare($sql);
+            
+            $query->bindValue(':tipo_usuario', $tipo_user);
+            $query->bindValue(':matricula', $matricula );
+            $query->bindValue(':nome', $nome );
+            $query->bindValue(':senha', $senha);
+            $resultado = $query->execute();
+            $ultimo_id = $conexao->lastInsertId();
 
+            header("Location: login.php");
+    
+        }
+       
        } catch (PDOException $e) {
            echo "erro";
            echo $e->getMessage();
@@ -45,7 +52,5 @@
         echo "erro";
         echo $e->getMessage();
        }
-
-        //$sql = "INSERT INTO aluno (tipo_usuario,matrícula,nome_usuario,senha_usuario) VALUES (:tipo_usuario,:matricula,:nome_usuario,senha_usuario)";
 
 ?>
