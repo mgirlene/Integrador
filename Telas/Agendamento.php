@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['id_usuario'])) {
+	header("Location: login.php");
+	exit;
+}
 require_once("conexao.php");
 $sql = "SELECT * FROM disciplina";
 $query = $conexao->prepare($sql);
@@ -39,7 +44,7 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 	<?php
-	include "menu.php";
+	include "menu_agendamento.php";
 	?>
 
 	<div class="limiter">

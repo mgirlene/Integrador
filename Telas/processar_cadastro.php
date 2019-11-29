@@ -1,10 +1,10 @@
 <?php
     require_once("conexao.php");
 
-    $nome = $_POST['nome'];
-    $matricula = $_POST['matricula'];
-    $curso = $_POST['curso'];
-    $senha = md5($_POST['senha']);
+    $nome = addslashes($_POST['nome']);
+    $matricula = addslashes($_POST['matricula']);
+    $curso = addslashes($_POST['curso']);
+    $senha = addslashes(md5($_POST['senha']));
     $tipo_user = "aluno";
     
     class user{

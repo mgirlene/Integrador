@@ -42,13 +42,13 @@
 
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-						<input class="input100" type="text" name="username" placeholder="Matrícula">
+						<input class="input100" type="text" name="matricula" placeholder="Matrícula">
 						<span class="focus-input100"></span>
 					</div>
 
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-						<input class="input100" type="password" name="pass" placeholder="Senha">
+						<input class="input100" type="password" name="senha" placeholder="Senha">
 						<span class="focus-input100"></span>
 					</div>
 
