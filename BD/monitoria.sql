@@ -1,5 +1,5 @@
-create database monitoria_integrador;
-use monitoria_integrador;
+create database monitoria_int;
+use monitoria_int;
 
 create table usuario(
 	id_usuario integer primary key auto_increment,
@@ -29,7 +29,6 @@ create table disciplina(
 
 create table monitor(
 	id_monitor integer primary key auto_increment,
-    horarios varchar(45),
     id_usuario integer,
     id_disciplina integer,
     id_curso integer,
@@ -48,4 +47,13 @@ create table atendimento(
     foreign key (id_aluno) references aluno(id_aluno),
     foreign key (id_monitor) references monitor(id_monitor),
     foreign key (id_disciplina) references disciplina(id_disciplina)
+);
+
+create table horarios(
+	id_horario integer primary key auto_increment,
+    dia_semana varchar(45),
+    hora_inicio varchar(45),
+    hora_fim varchar(45),
+    id_monitor integer,
+    foreign key (id_monitor) references monitor(id_monitor)
 );

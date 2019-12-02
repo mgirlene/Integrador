@@ -6,10 +6,10 @@ $resultado = $query->execute();
 $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
 
 $sql2 = "SELECT * FROM curso";
-    $query2 = $conexao->prepare($sql2);
-    $resultado = $query2->execute();
+$query2 = $conexao->prepare($sql2);
+$resultado = $query2->execute();
 
-    $cursos = $query2->fetchAll(PDO::FETCH_ASSOC);
+$cursos = $query2->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +23,7 @@ $sql2 = "SELECT * FROM curso";
 
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	<!--===============================================================================================-->
@@ -50,14 +51,14 @@ $sql2 = "SELECT * FROM curso";
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w" method="POST" action="processar_cadastro_monitor.php">
+				<form class="login100-form validate-form flex-sb flex-w" method="POST" action="processar_cadastro_monitor.php" id="formCM">
 					<span class="login100-form-title p-b-51">
 						Cadastrar Monitor
 					</span>
 
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-						<input class="input100" type="text" name="name" placeholder="Nome">
+						<input class="input100" type="text" name="nome" placeholder="Nome">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -68,52 +69,42 @@ $sql2 = "SELECT * FROM curso";
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-                        <select class="input100" name="curso">
-                            <option>
-                                Curso:
-                            </option>
-                            <?php
-                                foreach ($cursos as $curso) {
-                                    echo "<option value ='$curso[id_curso]'>
+						<select class="input100" name="curso">
+							<option value="">
+								Curso:
+							</option>
+							<?php
+							foreach ($cursos as $curso) {
+								echo "<option value ='$curso[id_curso]'>
                                     $curso[nome_curso]
                                     </option>";
-                                }
-                            ?>
-                        </select>
+							}
+							?>
+						</select>
 					</div>
-					
+
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-							<select class="input100">
-								<option>
-									Disciplina:
-								</option>
-								<?php
-								foreach ($disciplina as $disc) {
-									echo "<option value ='$disc[id_disciplina]'>
+						<select class="input100" name="disciplina">
+							<option value="">
+								Disciplina:
+							</option>
+							<?php
+							foreach ($disciplina as $disc) {
+								echo "<option value ='$disc[id_disciplina]'>
                                     $disc[nome_disciplina]
                                     </option>";
-								}
-								?>
-							</select>
+							}
+							?>
+						</select>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-                        <input class="input100" type="text" name="dias" placeholder="Dias de atendimento">
-                        <span class="focus-input100"></span>
-                    </div>
-
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-                        <input class="input100" type="text" name="horarios" placeholder="Horarios">
-                        <span class="focus-input100"></span>
-                    </div>
-
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-                        <input class="input100" type="password" name="senha" placeholder="Senha">
+                        <input class="input100" type="password" name="senha" id="senha" placeholder="Senha">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-                        <input class="input100" type="password" name="confSenha" placeholder="Confirmar senha">
+                        <input class="input100" type="password" name="confSenha" id="confSenha" placeholder="Confirmar senha">
                         <span class="focus-input100"></span>
                     </div>
 
@@ -147,7 +138,8 @@ $sql2 = "SELECT * FROM curso";
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>
 	<!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
-	<script src="js/main.js"></script>
+	<script src="js/monitor.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
 	<!--===============================================================================================-->
 </body>
 

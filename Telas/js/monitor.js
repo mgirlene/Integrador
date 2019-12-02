@@ -1,4 +1,3 @@
-
 (function ($) {
     "use strict";
 
@@ -51,9 +50,8 @@
 
         $(thisAlert).removeClass('alert-validate');
     }
-
-    $('#formC').ready(function () {
-        $('#formC').validate({
+    $('#formCM').ready(function () {
+        $('#formCM').validate({
             rules: {
                 nome: {
                     required: true,
@@ -66,7 +64,9 @@
                 curso: {
                     required: true
                 },
-
+                disciplina: {
+                    required: true
+                },
                 senha: {
                     required: true
                 },
@@ -85,7 +85,10 @@
                     minlength: "O campo nome deve conter no mínimo 3 caracteres."
                 },
                 curso: {
-                    required: "O campo curso é obrigatório.",
+                    required: "O campo curso é obrigatório."
+                },
+                disciplina: {
+                    required: "O campo disciplina é obrigatório."
                 },
                 senha: {
                     required: "O campo senha é obrigatório."
@@ -95,7 +98,7 @@
                     equalTo: "O campo confirmação de senha deve ser identico ao campo senha."
                 }
             }
-        });
     });
+});
 
 })(jQuery);

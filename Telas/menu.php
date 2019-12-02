@@ -79,8 +79,7 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
                             <!-- Search Button -->
                             <div class="search-area">
                                 <form action="#" method="post">
-                                    <input type="search" name="search" id="search" placeholder="Search">
-                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    
                                 </form>
                             </div>
 
