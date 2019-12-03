@@ -77,8 +77,14 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
 						</div>
 
 						<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-							<input class="input100" type="time" name="time" placeholder="Horário">
-							<span class="focus-input100"></span>
+							<select class="input100">
+								<option>
+									Selecione:
+								</option>
+								<?php
+								
+								?>
+							</select>
 						</div>
 
 						<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">

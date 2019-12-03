@@ -1,21 +1,3 @@
-<?php
-session_start();
-$id = $_SESSION['id_usuario'];
-
-require_once("conexao.php");
-$monitor = "SELECT * FROM monitor WHERE id_usuario = :id_monitor";
-$query1 = $conexao->prepare($monitor);
-$query1->bindValue(':id_monitor', $id);
-$query1->execute();
-$monitor = $query1->fetch();
-
-$sql = "SELECT dia_semana, hora_inicio,hora_fim From horarios WHERE id_monitor = :id_monitor";
-$query = $conexao->prepare($sql);
-$query->bindValue(':id_monitor', $monitor['id_monitor']);
-$query->execute();
-$horarios = $query->fetchAll(PDO::FETCH_ASSOC);
-
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -49,27 +31,27 @@ $horarios = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?php
-    include "menu_monitor.php";
+    include "menu.php";
     ?>
     <div class="tabela">
         <table class="table table-striped" border="1px">
             <thead>
                 <tr>
-                    <th scope="col">Dia</th>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Monitor</th>
+                    <th scope="col">Dia Atendimento</th>
                     <th scope="col">Hora Início</th>
                     <th scope="col">Hora Término</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($horarios as $h) {
-                    echo "<tr>
-                            <td> $h[dia_semana]</td>
-                            <td>$h[hora_inicio]</td>
-                            <td>$h[hora_fim]</td>
-                        </tr>";
-                }
-                ?>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                    <td>Otto</td>
+                </tr>
             </tbody>
         </table>
 

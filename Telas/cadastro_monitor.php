@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['id_usuario']) || $_SESSION['tipo_usuario'] != "admin") {
+	header("Location: login.php");
+	exit;
+}
 require_once("conexao.php");
 $sql = "SELECT * FROM disciplina";
 $query = $conexao->prepare($sql);
@@ -46,7 +51,7 @@ $cursos = $query2->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 	<?php
-	include "menu.php";
+	include "menu_admin.php";
 	?>
 	<div class="limiter">
 		<div class="container-login100">

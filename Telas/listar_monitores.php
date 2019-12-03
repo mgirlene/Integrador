@@ -1,27 +1,25 @@
 <?php
 session_start();
-$id = $_SESSION['id_usuario'];
-
+if (!isset($_SESSION['id_usuario']) || $_SESSION['tipo_usuario'] != "admin") {
+    header("Location: login.php");
+    exit;
+}
 require_once("conexao.php");
-$monitor = "SELECT * FROM monitor WHERE id_usuario = :id_monitor";
-$query1 = $conexao->prepare($monitor);
-$query1->bindValue(':id_monitor', $id);
-$query1->execute();
-$monitor = $query1->fetch();
-
-$sql = "SELECT dia_semana, hora_inicio,hora_fim From horarios WHERE id_monitor = :id_monitor";
+$sql = "SELECT m.id_monitor, u.nome, u.matricula, d.nome_disciplina From monitor as m 
+INNER JOIN usuario as u on m.id_usuario = u.id_usuario
+INNER JOIN disciplina as d on m.id_disciplina = d.id_disciplina";
 $query = $conexao->prepare($sql);
-$query->bindValue(':id_monitor', $monitor['id_monitor']);
-$query->execute();
-$horarios = $query->fetchAll(PDO::FETCH_ASSOC);
+$resultado = $query->execute();
+$monitor = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
 
-    <title>Horários</title>
+    <title>Monitores</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -49,26 +47,26 @@ $horarios = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?php
-    include "menu_monitor.php";
+    include "menu_admin.php";
     ?>
     <div class="tabela">
         <table class="table table-striped" border="1px">
             <thead>
                 <tr>
-                    <th scope="col">Dia</th>
-                    <th scope="col">Hora Início</th>
-                    <th scope="col">Hora Término</th>
+                    <th scope="col">Monitor</th>
+                    <th scope="col">Matrícula</th>
+                    <th scope="col">Disciplina</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach ($horarios as $h) {
-                    echo "<tr>
-                            <td> $h[dia_semana]</td>
-                            <td>$h[hora_inicio]</td>
-                            <td>$h[hora_fim]</td>
+                    foreach ($monitor as $m) {
+                        echo "<tr>
+                            <td> $m[nome]</td>
+                            <td>$m[matricula]</td>
+                            <td>$m[nome_disciplina]</td>
                         </tr>";
-                }
+                    }
                 ?>
             </tbody>
         </table>

@@ -20,6 +20,8 @@ try {
             header("Location: Agendamento.php");
         else if ($dado["tipo_usuario"] == "monitor")
             header("Location: cadastrar_horarios.php");
+        else if($dado["tipo_usuario"] == "admin") 
+            header("Location: cadastro_monitor.php");
         return true;
     } else {
         header("Location: login.php");

@@ -1,11 +1,3 @@
-<?php
-require_once("conexao.php");
-$sql = "SELECT * FROM disciplina";
-$query = $conexao->prepare($sql);
-$resultado = $query->execute();
-
-$disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -62,31 +54,20 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
                         <div class="classynav">
                             <ul>
                                 <li><a href="index.php">Início</a></li>
-                                <li><a href="#">Disciplinas</a>
-                                    <ul class="dropdown">
-                                        <?php
-                                            foreach ($disciplina as $disc) {
-                                            echo "<li>
-                                            <a href='horarios_monitoria.php'>$disc[nome_disciplina]</a>
-                                            </li>";
-                                        }
-                                        ?>
-                                    </ul>
-                                </li>
-                                <li><a href="Agendamento.php">Agendar Atendimento</a></li>
+                                <li><a href="listar_monitores.php">Monitores</a></li>
                             </ul>
 
                             <!-- Search Button -->
                             <div class="search-area">
                                 <form action="#" method="post">
-                                    
+
                                 </form>
                             </div>
 
                             <!-- Register / Login -->
                             <div class="register-login-area">
-                                <a href="cadastro_aluno.php" class="btn">Cadastre-se</a>
-                                <a href="login.php" class="btn active">Entrar</a>
+                                <a href="cadastro_monitor.php" class="btn">Cadastrar Monitor</a>
+                                <a href="sair.php" class="btn active">Sair</a>
                             </div>
 
                         </div>

@@ -35,7 +35,7 @@
             $resultado = $query->execute();
             $ultimo_id = $conexao->lastInsertId();
 
-            header("Location: login.php");
+            header("Location: listar_monitores.php");
     
         }
        
