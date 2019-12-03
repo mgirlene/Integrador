@@ -67,7 +67,7 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
                                         <?php
                                             foreach ($disciplina as $disc) {
                                             echo "<li>
-                                            <a href=''>$disc[nome_disciplina]</a>
+                                            <a href='horarios_monitoria.php?t=$disc[nome_disciplina]'>$disc[nome_disciplina]</a>
                                             </li>";
                                         }
                                         ?>

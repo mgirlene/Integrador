@@ -24,6 +24,7 @@ try {
             header("Location: cadastro_monitor.php");
         return true;
     } else {
+        $_SESSION['message'] = "Erro no login!";
         header("Location: login.php");
     }
 } catch (PDOException $e) {

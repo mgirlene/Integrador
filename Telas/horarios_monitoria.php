@@ -1,3 +1,15 @@
+<?php
+$d = $_GET['t'];
+require_once("conexao.php");
+$sql = "SELECT	m.id_monitor, d.nome_disciplina, u.nome,h.dia_semana, h.hora_inicio,h.hora_fim From horarios as h
+INNER JOIN monitor as m on h.id_monitor = m.id_monitor
+INNER JOIN disciplina as d on d.id_disciplina = m.id_disciplina
+INNER JOIN usuario as u on m.id_usuario = u.id_usuario Where d.nome_disciplina = :d";
+$query = $conexao->prepare($sql);
+$query->bindValue(':d', $d);
+$query->execute();
+$horarios = $query->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -45,13 +57,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
-                </tr>
+                <?php
+                foreach ($horarios as $h) {
+                    echo "<tr>
+                            <td> $h[nome_disciplina]</td>
+                            <td> $h[nome]</td>
+                            <td> $h[dia_semana]</td>
+                            <td>$h[hora_inicio]</td>
+                            <td>$h[hora_fim]</td>
+                        </tr>";
+                }
+                ?>
             </tbody>
         </table>
 
