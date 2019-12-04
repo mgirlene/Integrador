@@ -1,19 +1,25 @@
 <?php
 session_start();
+if (!isset($_SESSION['id_usuario']) || $_SESSION['tipo_usuario'] != "aluno") {
+    header("Location: login.php");
+    exit;
+}
 $id = $_SESSION['id_usuario'];
 
 require_once("conexao.php");
-$monitor = "SELECT * FROM monitor WHERE id_usuario = :id_monitor";
-$query1 = $conexao->prepare($monitor);
-$query1->bindValue(':id_monitor', $id);
+$aluno = "SELECT * FROM aluno WHERE id_usuario = :id_aluno";
+$query1 = $conexao->prepare($aluno);
+$query1->bindValue(':id_aluno', $id);
 $query1->execute();
-$monitor = $query1->fetch();
+$aluno = $query1->fetch();
 
-$sql = "SELECT	a.dia_semana, u.nome ,a.horario, a.duvida From atendimento as a
+$sql = "SELECT	a.dia_semana, u.nome ,a.horario, a.duvida, d.nome_disciplina From atendimento as a
 INNER JOIN aluno as al on a.id_aluno = al.id_aluno
-INNER JOIN usuario as u on al.id_usuario = u.id_usuario where a.id_monitor = :m";
+INNER JOIN usuario as u on al.id_usuario = u.id_usuario
+INNER JOIN disciplina as d on d.id_disciplina = a.id_disciplina
+where a.id_aluno = :a";
 $query = $conexao->prepare($sql);
-$query->bindValue(':m', $monitor['id_monitor']);
+$query->bindValue(':a', $aluno['id_aluno']);
 $query->execute();
 $atendimento = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -23,7 +29,7 @@ $atendimento = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <head>
 
-    <title>Agenda</title>
+    <title>Atendimentos</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -51,16 +57,16 @@ $atendimento = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?php
-    include "menu_monitor.php";
+    include "menu_agendamento.php";
     ?>
     <div class="tabela">
         <table class="table table-striped" border="1px">
             <thead>
                 <tr>
                     <th scope="col">Dia</th>
-                    <th scope="col">Aluno</th>
+                    <th scope="col">Disciplina</th>
                     <th scope="col">Horário</th>
-                    <th scope="col">Assunto</th>
+                    <th scope="col">Dúvida</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,7 +74,7 @@ $atendimento = $query->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($atendimento as $a) {
                     echo "<tr>
                             <td> $a[dia_semana]</td>
-                            <td> $a[nome]</td>
+                            <td> $a[nome_disciplina]</td>
                             <td> $a[horario]</td>
                             <td>$a[duvida]</td>
                         </tr>";
@@ -94,10 +100,8 @@ $atendimento = $query->fetchAll(PDO::FETCH_ASSOC);
     <script src="vendor/select2/select2.min.js"></script>
     <!--===============================================================================================-->
     <script src="vendor/daterangepicker/moment.min.js"></script>
-    <script src="vendor/daterangepicker/daterangepicker.js"></script>
     <!--===============================================================================================-->
     <script src="vendor/countdowntime/countdowntime.js"></script>
-    <script src="js/main.js"></script>
     <!--===============================================================================================-->
 </body>
 

@@ -76,6 +76,7 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
                                     </ul>
                                 </li>
                                 <li><a href="Agendamento.php">Agendar Atendimento</a></li>
+                                <li><a href="atendimentos.php"> Meus Agendamentos</a></li>
                             </ul>
 
                             <!-- Search Button -->

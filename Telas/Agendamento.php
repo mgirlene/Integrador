@@ -50,40 +50,56 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-50 p-b-90">
-				<form class="login100-form validate-form flex-sb flex-w">
+				<form class="login100-form validate-form flex-sb flex-w"  method="POST" action="processar_agendamento.php" id="formA">
 					<fieldset>
 						<span class="login100-form-title p-b-51">
 							Agendar Atendimento
 						</span>
 
 						<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-							<select class="input100">
-								<option>
-									Selecione:
+							<select class="input100" onchange="pegarHorarios()" id= "disc" name= "disciplina">
+								<option value="-1">
+									Disciplina:
 								</option>
 								<?php
 								foreach ($disciplina as $disc) {
-									echo "<option value ='$dis[id_disciplina]'>
-                                    $disc[nome_disciplina]
-                                    </option>";
+									echo "<option value ='" . $disc["id_disciplina"] . "'>";
+									echo $disc["nome_disciplina"];
+									echo "</option>";
 								}
 								?>
 							</select>
 						</div>
 
 						<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-							<input class="input100" type="date" name="data" placeholder="Data">
-							<span class="focus-input100"></span>
+							<select class="input100" onchange="pegarHorarios()" id= "dia" name= "diaSemana">
+								<option value = "-1">
+									Dia:
+								</option>
+								<option value = "Seg">
+									Segunda
+								</option>
+								<option value = "Ter">
+									Terça
+								</option>
+								<option value = "Qua">
+									Quarta
+								</option>
+								<option value = "Qui">
+									Quinta
+								</option>
+								<option value = "Sex">
+									Sexta
+								</option>
+
+							</select>
 						</div>
 
 						<div class="wrap-input100 validate-input m-b-16" data-validate="Esse campo é obrigatório">
-							<select class="input100">
+							<select id="selectHorarios" class="input100" name= "horario">
 								<option>
-									Selecione:
+									Horário:
 								</option>
-								<?php
-								
-								?>
 							</select>
 						</div>
 
@@ -124,6 +140,7 @@ $disciplina = $query->fetchAll(PDO::FETCH_ASSOC);
 	<!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/horarios.js"></script>
 	<!--===============================================================================================-->
 </body>
 

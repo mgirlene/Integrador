@@ -73,6 +73,7 @@
 						</button>
 					</div>
 				</form>
+				<p id="msg"></p>
 			</div>
 		</div>
 	</div>
