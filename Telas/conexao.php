@@ -1,5 +1,5 @@
 <?php
-    $dsn = "mysql:host=localhost;dbname=monitoria_int";
+    $dsn = "mysql:host=localhost;dbname=monitoria_ifrn";
     $usuario = "root";
     $senha = "";
     

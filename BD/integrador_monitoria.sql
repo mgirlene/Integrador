@@ -1,5 +1,5 @@
-create database monitoria_int;
-use monitoria_int;
+create database monitoria_ifrn;
+use monitoria_ifrn;
 
 create table usuario(
 	id_usuario integer primary key auto_increment,
@@ -39,8 +39,9 @@ create table monitor(
 
 create table atendimento(
 	id_atendimento integer primary key auto_increment,
-    data_atendimento date,
-    relatorio varchar(45),
+    dia_semana varchar(45),
+    duvida varchar(255),
+    horario varchar(45),
     id_aluno integer,
     id_monitor integer,
     id_disciplina integer,
